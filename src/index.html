@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/irwebcomp.esm.js"></script>
+    <script nomodule src="/build/irwebcomp.js"></script>
+  </head>
+  <body>
+    <ir-guest-info></ir-guest-info>
+    <button onclick="fetchGuestInfo()">Fetch Guest Info</button>
+    <button onclick="reset()">Reset</button>
+
+    <script>
+      function reset() {
+        const guestInfo = document.querySelector('ir-guest-info');
+        guestInfo.data = null;
+      }
+      function fetchGuestInfo() {
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+
+        var raw = JSON.stringify({
+          BH_ID: 13509433,
+          LANGUAGE_ABBREVIATION: 'EN',
+          EXCLUDE_AC: true,
+          EXCLUDE_BH_POLICIES: false,
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow',
+        };
+
+        fetch(
+          'https://gateway.igloorooms.com/IR/Get_Bh_Full?Ticket=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2OTEzMDk5OTEsIkNMQUlNLTAxIjoicktLMi9DY1dQQnM9IiwiQ0xBSU0tMDIiOiI5UStMQm93VTl6az0iLCJDTEFJTS0wMyI6Ilp3Tys5azJoTzUwPSIsIkNMQUlNLTA0IjoidEx1dmxrYUxwWktBZFQ0QXlPVFlSSU1uZVkvOFlGalYwWitvUzVITXlsTT0ifQ.ajLade-PthBIbjHLfTo1UQ9BwVDnJK7Czpp_dhAKCVE',
+          requestOptions,
+        )
+          .then(response => response.json())
+          .then(result => {
+            console.log(result);
+            const guestInfo = document.querySelector('ir-guest-info');
+            guestInfo.data = result;
+          })
+          .catch(error => console.log('error', error));
+      }
+      document.addEventListener('submitForm', e => {
+        console.log('submitForm', e.detail);
+      });
+    </script>
+  </body>
+</html>

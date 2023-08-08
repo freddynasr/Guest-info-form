@@ -67,7 +67,6 @@
       });
 
       document.addEventListener('getSetupData', e => {
-        console.log('getSetupData', e.detail);
         fetchDataFromAPI();
       });
       function fetchDataFromAPI() {
@@ -98,7 +97,7 @@
               });
               guestInfo.setupDataCountriesCode = result.My_Result.map(item => {
                 return {
-                  value: item.id,
+                  value: item.phone_prefix,
                   text: item.phone_prefix,
                 };
               });

@@ -59,7 +59,7 @@ export class GuestInfo {
       this.Modal.firstNameValid = this.data.firstName.trim() !== '' ? true : false;
       this.Modal.lastNameValid = this.data.lastName.trim() !== '' ? true : false;
       this.Modal.emailValid = this.data.email.trim() !== '' ? true : false;
-      this.Modal.countryValid = this.data.country.trim() !== '' ? true : false;
+      this.Modal.countryValid = this.data.country !== '' ? true : false;
       this.Modal.passwordValid = this.data.password.trim() !== '' ? true : false;
       this.Modal.mobileValid = this.data.mobile.trim() !== '' ? true : false;
       this.Modal.additionalNumberValid = this.data.additionalNumber.trim() !== '' ? true : false;
@@ -85,12 +85,15 @@ export class GuestInfo {
   @Listen('checkboxChange')
   @Listen('selectChange')
   handleInputChange(event) {
+    alert('handleInputChange');
     const target = event.target;
     const name = target.label;
     if (target.required !== undefined) {
       const nameValid = `${name}Valid`;
       this.Modal[name] = event.detail;
       this.Modal[nameValid] = event.detail.trim() !== '' && event.detail !== null ? true : false;
+      console.log(this.Modal[nameValid]);
+      console.log(this.Modal[name]);
     } else {
       this.Modal[name] = event.detail;
     }
@@ -116,12 +119,39 @@ export class GuestInfo {
   }
 
   render() {
+    console.log(this.Modal.country);
     let countries = null;
     let countryPrefix = null;
     if (this.setupDataCountries !== null && this.setupDataCountriesCode !== null) {
-      countries = <ir-select required label={'Country'} selectedValue={this.Modal.country} data={this.setupDataCountries} firstOption={'...'}></ir-select>;
+      countries = (
+        <ir-select
+          required
+          label={'Country'}
+          selectedValue={this.Modal.country.toString()}
+          data={this.setupDataCountries.map(item => {
+            return {
+              value: item.value.toString(),
+              text: item.text,
+            };
+          })}
+          firstOption={'...'}
+        ></ir-select>
+      );
+
       countryPrefix = (
-        <ir-select label={'Mobile'} selectedValue={this.Modal.additionalNumber} data={this.setupDataCountriesCode} firstOption={'...'} selectStyle={false} required></ir-select>
+        <ir-select
+          label={'Mobile'}
+          selectedValue={this.Modal.additionalNumber}
+          data={this.setupDataCountriesCode.map(item => {
+            return {
+              value: item.value.toString(),
+              text: item.text,
+            };
+          })}
+          firstOption={'...'}
+          selectStyle={false}
+          required
+        ></ir-select>
       );
     }
 
@@ -154,10 +184,14 @@ export class GuestInfo {
             <ir-input-text placeholder="" label="Email" text={this.Modal.email} required></ir-input-text>
             <ir-input-text placeholder="" label="Alternative email" text={this.Modal.altEmail}></ir-input-text>
             <ir-input-text label="Password" placeholder="" type="password" text={this.Modal.password} required></ir-input-text>
+
             {countries}
+
             <ir-input-text placeholder="" label="City" text={this.Modal.city}></ir-input-text>
             <ir-input-text placeholder="" label="Address" text={this.Modal.address}></ir-input-text>
+
             {countryPrefix}
+
             <ir-input-text put-text LabelAvailable={false} placeholder="" text={this.Modal.mobile} required></ir-input-text>
             <ir-checkbox label="NewsLetter" checked={this.Modal.newsletter}></ir-checkbox>
             <p>

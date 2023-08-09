@@ -4,6 +4,7 @@ import { Component, Prop, h, Event, EventEmitter, State, Watch } from '@stencil/
   tag: 'ir-input-text',
 })
 export class IrInputText {
+  @Prop() name: string;
   @Prop() text;
   @Prop() label = '<label>';
   @Prop() placeholder = '<placeholder>';

@@ -5,9 +5,10 @@ import { selectOption } from '../../common/models';
   tag: 'ir-select',
 })
 export class IrSelect {
+  @Prop() name: string;
   @Prop() data: selectOption[];
   @Prop() label = '<label>';
-  @Prop({ reflect: true }) selectedValue = null;
+  @Prop({ reflect: true, mutable: true }) selectedValue = null;
   @Prop() required: boolean;
   @Prop() LabelAvailable: boolean = true;
   @Prop() firstOption: string = 'Select';

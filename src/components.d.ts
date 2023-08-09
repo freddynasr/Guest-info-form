@@ -15,11 +15,13 @@ export namespace Components {
         "btn_size": string;
         "btn_type": string;
         "icon": string;
+        "name": string;
         "text": any;
     }
     interface IrCheckbox {
         "checked": boolean;
         "label": string;
+        "name": string;
     }
     interface IrGuestInfo {
         "data": guestInfo;
@@ -33,6 +35,7 @@ export namespace Components {
         "LabelAvailable": boolean;
         "inputStyle": boolean;
         "label": string;
+        "name": string;
         "placeholder": string;
         "required": boolean;
         "submited": boolean;
@@ -44,6 +47,7 @@ export namespace Components {
         "data": selectOption[];
         "firstOption": string;
         "label": string;
+        "name": string;
         "required": boolean;
         "selectStyle": boolean;
         "selectedValue": any;
@@ -163,12 +167,14 @@ declare namespace LocalJSX {
         "btn_size"?: string;
         "btn_type"?: string;
         "icon"?: string;
+        "name"?: string;
         "onClickHanlder"?: (event: IrButtonCustomEvent<any>) => void;
         "text"?: any;
     }
     interface IrCheckbox {
         "checked"?: boolean;
         "label"?: string;
+        "name"?: string;
         "onCheckboxChange"?: (event: IrCheckboxCustomEvent<boolean>) => void;
     }
     interface IrGuestInfo {
@@ -185,6 +191,7 @@ declare namespace LocalJSX {
         "LabelAvailable"?: boolean;
         "inputStyle"?: boolean;
         "label"?: string;
+        "name"?: string;
         "onTextChange"?: (event: IrInputTextCustomEvent<any>) => void;
         "placeholder"?: string;
         "required"?: boolean;
@@ -197,6 +204,7 @@ declare namespace LocalJSX {
         "data"?: selectOption[];
         "firstOption"?: string;
         "label"?: string;
+        "name"?: string;
         "onSelectChange"?: (event: IrSelectCustomEvent<any>) => void;
         "required"?: boolean;
         "selectStyle"?: boolean;

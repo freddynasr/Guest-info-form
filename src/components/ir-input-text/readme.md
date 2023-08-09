@@ -12,6 +12,7 @@
 | `LabelAvailable` | `label-available` |             | `boolean` | `true`            |
 | `inputStyle`     | `input-style`     |             | `boolean` | `true`            |
 | `label`          | `label`           |             | `string`  | `'<label>'`       |
+| `name`           | `name`            |             | `string`  | `undefined`       |
 | `placeholder`    | `placeholder`     |             | `string`  | `'<placeholder>'` |
 | `required`       | `required`        |             | `boolean` | `undefined`       |
 | `submited`       | `submited`        |             | `boolean` | `false`           |

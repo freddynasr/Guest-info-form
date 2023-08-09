@@ -25,19 +25,11 @@ export class GuestInfo {
     this.submit = false;
     if (this.data !== null) {
       this.Model = { ...this.Model, ...this.data };
-
-      const validationMapping = {
-        firstName: (value: string) => value.trim() !== '',
-        lastName: (value: string) => value.trim() !== '',
-        email: (value: string) => value.trim() !== '',
-        password: (value: string) => value.trim() !== '',
-        mobile: (value: string) => value.trim() !== '',
-        prefix: (value: string) => value.trim() !== '',
-      };
-
-      for (const field in validationMapping) {
-        this.Model[`${field}Valid`] = validationMapping[field](this.data[field]);
-      }
+      this.Model.firstNameValid = this.data.firstName.trim() !== '' && this.data.firstName !== null ? true : false;
+      this.Model.lastNameValid = this.data.lastName.trim() !== '' && this.data.lastName !== null ? true : false;
+      this.Model.emailValid = this.data.email.trim() !== '' && this.data.email !== null ? true : false;
+      this.Model.countryValid = this.data.country !== null ? true : false;
+      this.Model.passwordValid = this.data.password.trim() !== '' && this.data.password !== null ? true : false;
     } else {
       this.Model = new guestInfoValidation();
     }
@@ -49,11 +41,14 @@ export class GuestInfo {
   handleInputChange(event) {
     this.submit = false;
     const target = event.target;
-    const name = target.label;
+    const name = target.name;
     if (target.required !== undefined) {
       const nameValid = `${name}Valid`;
+      if (name === 'country') {
+        this.Model[name] = parseInt(event.detail);
+      }
       this.Model[name] = event.detail;
-      this.Model[nameValid] = event.detail.trim() !== '' && event.detail !== null ? true : false;
+      this.Model[nameValid] = event.detail !== -1 || (event.detail.trim() !== '' && event.detail !== null) ? true : false;
     } else {
       this.Model[name] = event.detail;
     }
@@ -76,6 +71,7 @@ export class GuestInfo {
       countries = (
         <ir-select
           required
+          name="country"
           submited={this.submit}
           label={'Country'}
           selectedValue={this.Model.country.toString()}
@@ -91,6 +87,7 @@ export class GuestInfo {
 
       countryPrefix = (
         <ir-select
+          name="prefix"
           label={'Mobile'}
           submited={this.submit}
           selectedValue={this.Model.prefix}
@@ -119,17 +116,17 @@ export class GuestInfo {
         </div>
         <div class="card-content collapse show">
           <div class="card-body pt-0">
-            <ir-input-text placeholder="" label="First Name" submited={this.submit} text={this.Model.firstName} required></ir-input-text>
-            <ir-input-text placeholder="" label="Last Name" submited={this.submit} text={this.Model.lastName} required></ir-input-text>
-            <ir-input-text placeholder="" label="Email" submited={this.submit} text={this.Model.email} required></ir-input-text>
-            <ir-input-text placeholder="" label="Alternative email" text={this.Model.altEmail}></ir-input-text>
-            <ir-input-text label="Password" placeholder="" submited={this.submit} type="password" text={this.Model.password} required></ir-input-text>
+            <ir-input-text placeholder="" label="First Name" name="firstName" submited={this.submit} text={this.Model.firstName} required></ir-input-text>
+            <ir-input-text placeholder="" label="Last Name" name="lastName" submited={this.submit} text={this.Model.lastName} required></ir-input-text>
+            <ir-input-text placeholder="" label="Email" name="email" submited={this.submit} text={this.Model.email} required></ir-input-text>
+            <ir-input-text placeholder="" label="Alternative email" name="altEmail" text={this.Model.altEmail}></ir-input-text>
+            <ir-input-text label="Password" placeholder="" name="password" submited={this.submit} type="password" text={this.Model.password} required></ir-input-text>
             {countries}
-            <ir-input-text placeholder="" label="City" text={this.Model.city}></ir-input-text>
-            <ir-input-text placeholder="" label="Address" text={this.Model.address}></ir-input-text>
+            <ir-input-text placeholder="" label="City" name="city" text={this.Model.city}></ir-input-text>
+            <ir-input-text placeholder="" label="Address" name="address" text={this.Model.address}></ir-input-text>
             {countryPrefix}
-            <ir-input-text put-text LabelAvailable={false} placeholder="" submited={this.submit} text={this.Model.mobile} required></ir-input-text>
-            <ir-checkbox label="NewsLetter" checked={this.Model.newsletter}></ir-checkbox>
+            <ir-input-text put-text LabelAvailable={false} name="mobile" placeholder="" submited={this.submit} text={this.Model.mobile} required></ir-input-text>
+            <ir-checkbox label="NewsLetter" name="newsletter" checked={this.Model.newsletter}></ir-checkbox>
             <p>
               <strong>Last used:</strong> Language:
               <strong>{this.Model.language}</strong> --- Currency: <strong>{this.Model.currency}</strong>

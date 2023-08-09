@@ -62,7 +62,6 @@ export class IrSelect {
             <option value="">{this.firstOption}</option>
             {this.data.map(item => {
               if (this.selected === item.value) {
-                console.log(this.selected);
                 return (
                   <option selected value={item.value}>
                     {item.text}

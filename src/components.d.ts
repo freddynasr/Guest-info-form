@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { selectOption } from "./common/models";
-export { selectOption } from "./common/models";
+import { guestInfo, selectOption } from "./common/models";
+export { guestInfo, selectOption } from "./common/models";
 export namespace Components {
     interface IrButton {
         "btn_block": boolean;
@@ -22,7 +22,7 @@ export namespace Components {
         "label": string;
     }
     interface IrGuestInfo {
-        "data": any;
+        "data": guestInfo;
         "setupDataCountries": selectOption[];
         "setupDataCountriesCode": selectOption[];
     }
@@ -169,9 +169,9 @@ declare namespace LocalJSX {
         "onCheckboxChange"?: (event: IrCheckboxCustomEvent<boolean>) => void;
     }
     interface IrGuestInfo {
-        "data"?: any;
+        "data"?: guestInfo;
         "onGetSetupData"?: (event: IrGuestInfoCustomEvent<any>) => void;
-        "onSubmitForm"?: (event: IrGuestInfoCustomEvent<any>) => void;
+        "onSubmitForm"?: (event: IrGuestInfoCustomEvent<guestInfo>) => void;
         "setupDataCountries"?: selectOption[];
         "setupDataCountriesCode"?: selectOption[];
     }

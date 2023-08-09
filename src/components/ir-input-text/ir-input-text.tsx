@@ -1,4 +1,4 @@
-import { Component, Prop, h, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ir-input-text',
@@ -10,12 +10,21 @@ export class IrInputText {
   @Prop() required: boolean;
   @Prop() LabelAvailable: boolean = true;
   @Prop() type = 'text';
+  @Prop() submited: boolean = false;
+
   @State() valid: boolean;
   @State() initial: boolean = true;
 
   @Event() textChange: EventEmitter<any>;
   connectedCallback() {}
   disconnectedCallback() {}
+
+  @Watch('text')
+  watchHandler(newValue: string) {
+    if (newValue !== '' && this.required) {
+      this.valid = true;
+    }
+  }
 
   handleInputChange(event) {
     this.initial = false;
@@ -37,7 +46,7 @@ export class IrInputText {
         </label>
       </div>
     );
-    if (this.required && !this.valid && !this.initial) {
+    if ((this.required && !this.valid && !this.initial) || (this.required && this.submited && !this.valid && this.initial)) {
       className = 'form-control border-danger';
     }
 

@@ -34,6 +34,7 @@ export namespace Components {
         "label": string;
         "placeholder": string;
         "required": boolean;
+        "submited": boolean;
         "text": any;
         "type": string;
     }
@@ -44,7 +45,8 @@ export namespace Components {
         "label": string;
         "required": boolean;
         "selectStyle": boolean;
-        "selectedValue": string;
+        "selectedValue": any;
+        "submited": boolean;
     }
     interface IrSpan {
         "text": any;
@@ -184,6 +186,7 @@ declare namespace LocalJSX {
         "onTextChange"?: (event: IrInputTextCustomEvent<any>) => void;
         "placeholder"?: string;
         "required"?: boolean;
+        "submited"?: boolean;
         "text"?: any;
         "type"?: string;
     }
@@ -195,7 +198,8 @@ declare namespace LocalJSX {
         "onSelectChange"?: (event: IrSelectCustomEvent<any>) => void;
         "required"?: boolean;
         "selectStyle"?: boolean;
-        "selectedValue"?: string;
+        "selectedValue"?: any;
+        "submited"?: boolean;
     }
     interface IrSpan {
         "text"?: any;

@@ -13,6 +13,7 @@
 | `label`          | `label`           |             | `string`  | `'<label>'`       |
 | `placeholder`    | `placeholder`     |             | `string`  | `'<placeholder>'` |
 | `required`       | `required`        |             | `boolean` | `undefined`       |
+| `submited`       | `submited`        |             | `boolean` | `false`           |
 | `text`           | `text`            |             | `any`     | `undefined`       |
 | `type`           | `type`            |             | `string`  | `'text'`          |
 

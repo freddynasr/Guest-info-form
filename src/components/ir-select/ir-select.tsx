@@ -48,6 +48,14 @@ export class IrSelect {
 
   render() {
     let className = 'form-control';
+    let label = (
+      <div class="input-group-prepend">
+        <label class="input-group-text">
+          {this.label}
+          {this.required ? '*' : ''}
+        </label>
+      </div>
+    );
     if (this.selectStyle === false) {
       className = '';
     }
@@ -55,15 +63,14 @@ export class IrSelect {
       className = `${className} border-danger`;
     }
 
+    if (!this.LabelAvailable) {
+      label = '';
+    }
+
     return (
       <div class="form-group">
         <div class="input-group">
-          <div class="input-group-prepend">
-            <label class="input-group-text">
-              {this.label}
-              {this.required ? '*' : ''}
-            </label>
-          </div>
+          {label}
           <select class={className} onInput={this.handleSelectChange.bind(this)} required={this.required}>
             <option value={null}>{this.firstOption}</option>
             {this.data.map(item => {

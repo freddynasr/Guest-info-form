@@ -31,6 +31,7 @@ export namespace Components {
     }
     interface IrInputText {
         "LabelAvailable": boolean;
+        "inputStyle": boolean;
         "label": string;
         "placeholder": string;
         "required": boolean;
@@ -182,6 +183,7 @@ declare namespace LocalJSX {
     }
     interface IrInputText {
         "LabelAvailable"?: boolean;
+        "inputStyle"?: boolean;
         "label"?: string;
         "onTextChange"?: (event: IrInputTextCustomEvent<any>) => void;
         "placeholder"?: string;

@@ -11,6 +11,7 @@ export class IrInputText {
   @Prop() LabelAvailable: boolean = true;
   @Prop() type = 'text';
   @Prop() submited: boolean = false;
+  @Prop() inputStyle: boolean = true;
 
   @State() valid: boolean;
   @State() initial: boolean = true;
@@ -23,6 +24,12 @@ export class IrInputText {
   watchHandler(newValue: string) {
     if (newValue !== '' && this.required) {
       this.valid = true;
+    }
+  }
+  @Watch('submited')
+  watchHandler2(newValue: boolean) {
+    if (newValue && this.required) {
+      this.initial = false;
     }
   }
 
@@ -46,12 +53,14 @@ export class IrInputText {
         </label>
       </div>
     );
-    if ((this.required && !this.valid && !this.initial) || (this.required && this.submited && !this.valid && this.initial)) {
-      className = 'form-control border-danger';
-    }
-
     if (!this.LabelAvailable) {
       label = '';
+    }
+    if (this.inputStyle === false) {
+      className = '';
+    }
+    if (this.required && !this.valid && !this.initial) {
+      className = `${className} border-danger`;
     }
 
     return (

@@ -10,6 +10,7 @@
 | Property         | Attribute         | Description | Type      | Default           |
 | ---------------- | ----------------- | ----------- | --------- | ----------------- |
 | `LabelAvailable` | `label-available` |             | `boolean` | `true`            |
+| `inputStyle`     | `input-style`     |             | `boolean` | `true`            |
 | `label`          | `label`           |             | `string`  | `'<label>'`       |
 | `placeholder`    | `placeholder`     |             | `string`  | `'<placeholder>'` |
 | `required`       | `required`        |             | `boolean` | `undefined`       |

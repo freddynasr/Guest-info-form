@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/irwebcomp.esm.js"></script>
-    <script nomodule src="/build/irwebcomp.js"></script>
+    <script type="module" src="/build/training.esm.js"></script>
+    <script nomodule src="/build/training.js"></script>
   </head>
   <body>
-    <ir-guest-info></ir-guest-info>
+    <ir-sidebar side="right" open
+      ><h3>Hello world</h3>
+      <ir-guest-info></ir-guest-info
+    ></ir-sidebar>
+    <button onclick="openSidebar()">Open</button>
     <button onclick="fetchGuestInfo()" class="btn btn-success">Fetch Guest Info</button>
     <button onclick="reset()" class="btn btn-warning">Reset Data Fetched</button>
+
     <script>
       const Ticket =
         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2OTE3NjExNjEsIkNMQUlNLTAxIjoicktLMi9DY1dQQnM9IiwiQ0xBSU0tMDIiOiI5UStMQm93VTl6az0iLCJDTEFJTS0wMyI6Ilp3Tys5azJoTzUwPSIsIkNMQUlNLTA0IjoidEx1dmxrYUxwWkw3OUtaYWxDbTV1ZnVIMldJdXhtTDBLVk1wcUVLNW52RT0ifQ.m-Y7w3wF7n8MpFnAHT3W7x33wilLEINMkrSkWtDduCo';
@@ -103,10 +108,10 @@
           return null;
         }
       }
-
-      // document.addEventListener('checkboxChange', e => {
-      //   console.log('textChange', e.detail);
-      // });
+      const sidebar = document.querySelector('ir-sidebar');
+      function openSidebar() {
+        sidebar.toggleSidebar();
+      }
     </script>
     <!-- <ir-select label="Select" first-option="..."></ir-select>
 

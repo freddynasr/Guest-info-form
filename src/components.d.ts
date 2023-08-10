@@ -53,12 +53,35 @@ export namespace Components {
         "selectedValue": any;
         "submited": boolean;
     }
+    interface IrSidebar {
+        "name": string;
+        "open": boolean;
+        "side": 'right' | 'left';
+        "toggleSidebar": () => Promise<void>;
+    }
     interface IrSpan {
         "text": any;
     }
     interface IrSwitch {
-        "checked": boolean;
+        "baseClass"?: string;
+        "classOn"?: string;
+        "colorOn"?: string;
+        "disabled"?: boolean;
+        "handleWidth"?: string | 'auto';
+        "indeterminate"?: boolean;
+        "inverse"?: boolean;
+        "labelOff": string;
+        "labelOn": string;
+        "labelText"?: string;
+        "labelWidth"?: string | 'auto';
+        "offClass"?: string;
+        "offColor"?: string;
+        "radioAllOff"?: boolean;
+        "readonly"?: boolean;
+        "size"?: string | 'mini' | 'small' | 'normal' | 'large';
+        "switch_animate"?: boolean;
         "value": boolean;
+        "wrapperClass"?: string;
     }
     interface IrTextarea {
         "cols": number;
@@ -129,6 +152,12 @@ declare global {
         prototype: HTMLIrSelectElement;
         new (): HTMLIrSelectElement;
     };
+    interface HTMLIrSidebarElement extends Components.IrSidebar, HTMLStencilElement {
+    }
+    var HTMLIrSidebarElement: {
+        prototype: HTMLIrSidebarElement;
+        new (): HTMLIrSidebarElement;
+    };
     interface HTMLIrSpanElement extends Components.IrSpan, HTMLStencilElement {
     }
     var HTMLIrSpanElement: {
@@ -154,6 +183,7 @@ declare global {
         "ir-icon": HTMLIrIconElement;
         "ir-input-text": HTMLIrInputTextElement;
         "ir-select": HTMLIrSelectElement;
+        "ir-sidebar": HTMLIrSidebarElement;
         "ir-span": HTMLIrSpanElement;
         "ir-switch": HTMLIrSwitchElement;
         "ir-textarea": HTMLIrTextareaElement;
@@ -211,13 +241,35 @@ declare namespace LocalJSX {
         "selectedValue"?: any;
         "submited"?: boolean;
     }
+    interface IrSidebar {
+        "name"?: string;
+        "open"?: boolean;
+        "side"?: 'right' | 'left';
+    }
     interface IrSpan {
         "text"?: any;
     }
     interface IrSwitch {
-        "checked"?: boolean;
-        "onSwitchHanlder"?: (event: IrSwitchCustomEvent<boolean>) => void;
+        "baseClass"?: string;
+        "classOn"?: string;
+        "colorOn"?: string;
+        "disabled"?: boolean;
+        "handleWidth"?: string | 'auto';
+        "indeterminate"?: boolean;
+        "inverse"?: boolean;
+        "labelOff"?: string;
+        "labelOn"?: string;
+        "labelText"?: string;
+        "labelWidth"?: string | 'auto';
+        "offClass"?: string;
+        "offColor"?: string;
+        "onValueChange"?: (event: IrSwitchCustomEvent<boolean>) => void;
+        "radioAllOff"?: boolean;
+        "readonly"?: boolean;
+        "size"?: string | 'mini' | 'small' | 'normal' | 'large';
+        "switch_animate"?: boolean;
         "value"?: boolean;
+        "wrapperClass"?: string;
     }
     interface IrTextarea {
         "cols"?: number;
@@ -233,6 +285,7 @@ declare namespace LocalJSX {
         "ir-icon": IrIcon;
         "ir-input-text": IrInputText;
         "ir-select": IrSelect;
+        "ir-sidebar": IrSidebar;
         "ir-span": IrSpan;
         "ir-switch": IrSwitch;
         "ir-textarea": IrTextarea;
@@ -248,6 +301,7 @@ declare module "@stencil/core" {
             "ir-icon": LocalJSX.IrIcon & JSXBase.HTMLAttributes<HTMLIrIconElement>;
             "ir-input-text": LocalJSX.IrInputText & JSXBase.HTMLAttributes<HTMLIrInputTextElement>;
             "ir-select": LocalJSX.IrSelect & JSXBase.HTMLAttributes<HTMLIrSelectElement>;
+            "ir-sidebar": LocalJSX.IrSidebar & JSXBase.HTMLAttributes<HTMLIrSidebarElement>;
             "ir-span": LocalJSX.IrSpan & JSXBase.HTMLAttributes<HTMLIrSpanElement>;
             "ir-switch": LocalJSX.IrSwitch & JSXBase.HTMLAttributes<HTMLIrSwitchElement>;
             "ir-textarea": LocalJSX.IrTextarea & JSXBase.HTMLAttributes<HTMLIrTextareaElement>;
